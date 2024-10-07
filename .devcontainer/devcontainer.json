@@ -1,0 +1,78 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  }const vscode = require('vscode');
+const azdata = require('azure-account');
+
+function activate(context) {
+    let disposable = vscode.commands.registerCommand('extension.loginToAzure', async () => {
+        const azureAccount = new azdata.AzureAccount();
+        
+        try {
+            await azureAccount.signIn();
+            vscode.window.showInformationMessage('Zalogowano do konta Azure!');
+        } catch (error) {
+            vscode.window.showErrorMessage(`Błąd logowania: ${error.message}`);
+        }
+    });
+
+    context.subscriptions.push(disposable);
+}
+
+function deactivate() {}
+
+module.exports = {
+    activate,
+    deactivate
+};
+
+}
+
+const vscode = require('vscode');
+const azdata = require('azure-account');
+
+function activate(context) {
+    let disposable = vscode.commands.registerCommand('extension.loginToAzure', async () => {
+        const azureAccount = new azdata.AzureAccount();
+        
+        try {
+            await azureAccount.signIn();
+            vscode.window.showInformationMessage('Zalogowano do konta Azure!');
+        } catch (error) {
+            vscode.window.showErrorMessage(`Błąd logowania: ${error.message}`);
+        }
+    });
+
+    context.subscriptions.push(disposable);
+}
+
+function deactivate() {}
+
+module.exports = {
+    activate,
+    deactivate
+};{
+    "name": "azure-account-sample",
+    "displayName": "Azure Account Sample",
+    "description": "Przykład użycia rozszerzenia vscode-azure-account",
+    "version": "0.0.1",
+    "publisher": "twoje_imie",
+    "engines": {
+        "vscode": "^1.50.0"
+    },
+    "activationEvents": [
+        "onCommand:extension.loginToAzure"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.loginToAzure",
+                "title": "Zaloguj do Azure"
+            }
+        ]
+    }
+}
+
+
+
